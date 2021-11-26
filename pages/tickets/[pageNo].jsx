@@ -14,7 +14,7 @@ export default function PageNo({
 
 	let maxNumber = Math.ceil(value / 25)
 
-	if (error) return <div>error: {error}</div>
+	if (error) return <div>{error?.message ? error.message : error}</div>
 
 	return (
 		<>
@@ -80,8 +80,17 @@ export async function getStaticProps(context) {
 
 	ticketData = await ticketData.json()
 	countData = await countData.json()
+	// console.log(ticketData)
 
-	if (!ticketData | !countData) {
+	// console.log(!ticketData)
+	const emptyData = !ticketData || !countData
+	// console.log(!ticketData || !countData)
+
+	const pageEnd =
+		ticketData.next_page === null && ticketData.tickets.length === 0
+	// console.log('==================', emptyData, pageEnd)
+
+	if (emptyData || pageEnd) {
 		return {
 			notFound: true,
 		}
