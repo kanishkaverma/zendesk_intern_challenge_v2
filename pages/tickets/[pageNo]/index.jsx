@@ -1,5 +1,26 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Ticket from '../../../components/Ticket'
+
+import { Grid } from '@chakra-ui/react'
+import {
+	List,
+	ListItem,
+	ListIcon,
+	OrderedList,
+	UnorderedList,
+} from '@chakra-ui/react'
+import {
+	Table,
+	Thead,
+	Tbody,
+	Tfoot,
+	Tr,
+	Th,
+	Td,
+	TableCaption,
+} from '@chakra-ui/react'
+import Dashboard from '../../../components/Dashboard'
 
 export default function PageNo({
 	ticketData,
@@ -18,9 +39,36 @@ export default function PageNo({
 
 	return (
 		<>
-			{tickets.map((elem, idx) => (
-				<div key={elem.id}>{elem.id}</div>
-			))}
+			<Dashboard></Dashboard>
+			<Table
+				variant="simple"
+				size="lg"
+				textAlign="left"
+				// borderColor="black"
+				// border="10px"
+			>
+				{/* <Table variant='striped' colorScheme="teal" > */}
+				<TableCaption placement="top">Ticket Information</TableCaption>
+				<Thead>
+					<Tr>
+						<Th>Status</Th>
+						<Th>Subject</Th>
+						<Th>Details</Th>
+					</Tr>
+				</Thead>
+				<Tbody>
+					{tickets.map((elem, idx) => (
+						// <div key={elem.id}>
+
+						// <ListItem>
+						<Ticket key={elem.id}>{elem}</Ticket>
+						// </ListItem>
+						// </div>
+					))}
+				</Tbody>
+			</Table>
+			{/* </List> */}
+			{/* </Grid> */}
 			{pageNo < maxNumber ? (
 				<Link href={`/tickets/${parseInt(pageNo) + 1}`}>
 					<a>next</a>
