@@ -1,24 +1,24 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Ticket from '../../../components/Ticket'
-
-import { Grid } from '@chakra-ui/react'
-import {
-	List,
-	ListItem,
-	ListIcon,
-	OrderedList,
-	UnorderedList,
-} from '@chakra-ui/react'
 import {
 	Table,
 	Thead,
 	Tbody,
-	Tfoot,
 	Tr,
 	Th,
 	Td,
 	TableCaption,
+	Button,
+	Flex,
+	Text,
+} from '@chakra-ui/react'
+import {
+	Alert,
+	AlertIcon,
+	AlertTitle,
+	AlertDescription,
+	CloseButton,
 } from '@chakra-ui/react'
 import Dashboard from '../../../components/Dashboard'
 
@@ -35,7 +35,21 @@ export default function PageNo({
 
 	let maxNumber = Math.ceil(value / 25)
 
-	if (error) return <div>{error?.message ? error.message : error}</div>
+	if (error)
+		return (
+			<Alert status="error" size="xl" height="100vh" >
+				<AlertIcon />
+				<AlertTitle mr={2}> Error</AlertTitle>
+				<AlertDescription>
+					{error?.message ? error.message : error}
+				</AlertDescription>
+				{/* <CloseButton position="absolute" right="8px" top="8px" /> */}
+			</Alert>
+
+			// <Text fontSize="3xl" fontWeight="bold">
+			// 	{error?.message ? error.message : error}
+			// </Text>
+		)
 
 	return (
 		<>
@@ -67,22 +81,26 @@ export default function PageNo({
 					))}
 				</Tbody>
 			</Table>
-			{/* </List> */}
-			{/* </Grid> */}
-			{pageNo < maxNumber ? (
-				<Link href={`/tickets/${parseInt(pageNo) + 1}`}>
-					<a>next</a>
-				</Link>
-			) : (
-				<div></div>
-			)}{' '}
-			{pageNo > 1 ? (
-				<Link href={`/tickets/${parseInt(pageNo) - 1}`}>
-					<a>prev</a>
-				</Link>
-			) : (
-				<div></div>
-			)}
+			<Flex justifyContent="space-between" alignItems="center">
+				{pageNo > 1 ? (
+					<Link href={`/tickets/${parseInt(pageNo) - 1}`}>
+						<Button size="lg" margin="10">
+							Previous
+						</Button>
+					</Link>
+				) : (
+					<div></div>
+				)}
+				{pageNo < maxNumber ? (
+					<Link href={`/tickets/${parseInt(pageNo) + 1}`}>
+						<Button size="lg" margin="10">
+							Next
+						</Button>
+					</Link>
+				) : (
+					<div></div>
+				)}
+			</Flex>
 		</>
 	)
 }
