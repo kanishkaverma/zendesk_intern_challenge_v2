@@ -19,6 +19,7 @@ import {
 	AlertTitle,
 	AlertDescription,
 	CloseButton,
+	Grid,
 } from '@chakra-ui/react'
 import Dashboard from '../../../components/Dashboard'
 
@@ -37,19 +38,23 @@ export default function PageNo({
 
 	if (error)
 		return (
-			<Alert status="error" size="xl" height="100vh" >
+			<Alert status="error" size="xl" height="100vh">
 				<AlertIcon />
 				<AlertTitle mr={2}> Error</AlertTitle>
 				<AlertDescription>
 					{error?.message ? error.message : error}
 				</AlertDescription>
-				{/* <CloseButton position="absolute" right="8px" top="8px" /> */}
 			</Alert>
-
-			// <Text fontSize="3xl" fontWeight="bold">
-			// 	{error?.message ? error.message : error}
-			// </Text>
 		)
+
+	if (value === 0) {
+		return (
+			<>
+				<Dashboard></Dashboard>
+				<Grid placeItems="center">No Tickets in this view.</Grid>
+			</>
+		)
+	}
 
 	return (
 		<>
@@ -154,9 +159,10 @@ export async function getStaticProps(context) {
 
 	const pageEnd =
 		ticketData.next_page === null && ticketData.tickets.length === 0
-	// console.log('==================', emptyData, pageEnd)
 
-	if (emptyData || pageEnd) {
+	const hasZeroTickets = countData?.count?.value === 0
+
+	if ((emptyData || pageEnd) && !hasZeroTickets) {
 		return {
 			notFound: true,
 		}
