@@ -42,12 +42,10 @@ import {
 } from '@chakra-ui/react'
 
 export default function Ticket({ children }) {
-	// console.log(children.status)
 	let statusStyle = ''
 	switch (children.status) {
 		case 'open': // code block
 			statusStyle = 'red'
-			// console.log('case open')
 			break
 		case 'pending': // code block
 			statusStyle = 'blue'
@@ -61,12 +59,7 @@ export default function Ticket({ children }) {
 	const finalRef = React.useRef()
 
 	return (
-		// <div key={children.id} style={{ color: 'red' }}>
-		// 	{children.id}{' '}
-		// </div>
 		<>
-			{/* <ListIcon as={CheckCircleIcon} color="green.500" /> */}
-			{/* {children.subject} */}
 			<Tr>
 				<Td>
 					<Badge colorScheme={statusStyle} borderRadius="full" px="2">
@@ -77,23 +70,10 @@ export default function Ticket({ children }) {
 					<Text fontSize="md"> {children.subject} </Text>
 				</Td>
 				<Td>
-					{/* <Box
-						ref={finalRef}
-						tabIndex={-1}
-						aria-label="Focus moved to this box"
-					> */}
-					{/* <Text fontSize="sm">{children.raw_subject}</Text> */}
-					{/* </Box> */}
-					{/* <Flex justifyContent="space-between" alignItems="center"> */}
-					{/* <Badge colorScheme="green" borderRadius="full" px="2"> */}
-					{/* {children.status} */}
-					{/* </Badge> */}
 					<Button
 						size="sm"
 						mt={4}
 						onClick={onOpen}
-						// backgroundColor="white"
-						// border="1px"
 						variant="outline"
 						color="green.300"
 					>
@@ -119,14 +99,11 @@ export default function Ticket({ children }) {
 										<StatNumber fontSize="md">
 											{children.created_at.substring(0, 10)}{' '}
 											{children.created_at.substring(11, 19)}
-											{/* {children.created_at.split('T')}{' '} */}
 										</StatNumber>
-										{/* <StatHelpText></StatHelpText> */}
 									</Stat>
 								</Box>
 								<Box>
 									<Heading size="sm">Tags</Heading>
-
 									{children.tags.map((elem, idx) => (
 										<Tag margin="1" key={idx}>
 											{elem}
@@ -139,7 +116,6 @@ export default function Ticket({ children }) {
 								<Button colorScheme="green" mr={3} onClick={onClose}>
 									Close
 								</Button>
-								{/* <Button variant="ghost">Secondary Action</Button> */}
 							</ModalFooter>
 						</ModalContent>
 					</Modal>
@@ -147,79 +123,4 @@ export default function Ticket({ children }) {
 			</Tr>
 		</>
 	)
-
-	// <>
-	// 	<List spacing={3}>
-	// 		<ListItem>
-	// 			<ListIcon as={MdCheckCircle} color="green.500" />
-	// 			Lorem ipsum dolor sit amet, consectetur adipisicing elit
-	// 		</ListItem>
-	// 		<ListItem>
-	// 			<ListIcon as={MdCheckCircle} color="green.500" />
-	// 			Assumenda, quia temporibus eveniet a libero incidunt suscipit
-	// 		</ListItem>
-	// 		<ListItem>
-	// 			<ListIcon as={MdCheckCircle} color="green.500" />
-	// 			Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-	// 		</ListItem>
-	// 		{/* You can also use custom icons from react-icons */}
-	// 		<ListItem>
-	// 			<ListIcon as={MdSettings} color="green.500" />
-	// 			Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-	// 		</ListItem>
-	// 	</List>
-	// 	<Box
-	// 		maxW="md"
-	// 		borderWidth="1px"
-	// 		borderRadius="lg"
-	// 		overflow="hidden"
-	// 		borderColor="gray.500"
-	// 		p="10px"
-	// 		margin="3"
-	// 	>
-	// 		<Box
-	// 			ref={finalRef}
-	// 			tabIndex={-1}
-	// 			aria-label="Focus moved to this box"
-	// 			p="6px"
-	// 			border="1px"
-	// 			borderColor="gray.500"
-	// 		>
-	// 			<Box
-	// 				ref={finalRef}
-	// 				tabIndex={-1}
-	// 				aria-label="Focus moved to this box"
-	// 			>
-	// 				<Text fontSize="sm">{children.raw_subject}</Text>
-	// 			</Box>
-	// 			<Flex justifyContent="space-between" alignItems="center">
-	// 				<Badge colorScheme="green" borderRadius="full" px="2">
-	// 					{children.status}
-	// 				</Badge>
-	// 				<Button mt={4} onClick={onOpen}>
-	// 					{/* {children.id} */}
-	// 					show details
-	// 				</Button>
-	// 			</Flex>
-	// 			<Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-	// 				<ModalOverlay />
-	// 				<ModalContent>
-	// 					<ModalHeader>Modal Title</ModalHeader>
-	// 					<ModalCloseButton />
-	// 					<ModalBody>
-	// 						{/* <Lorem count={2} /> */}
-	// 						random text
-	// 					</ModalBody>
-
-	// 					<ModalFooter>
-	// 						<Button colorScheme="blue" mr={3} onClick={onClose}>
-	// 							Close
-	// 						</Button>
-	// 						<Button variant="ghost">Secondary Action</Button>
-	// 					</ModalFooter>
-	// 				</ModalContent>
-	// 			</Modal>
-	// 		</Box>
-	// 	</Box>
-	// </>
 }

@@ -1,27 +1,22 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Ticket from '../../../components/Ticket'
+import Dashboard from '../../../components/Dashboard'
 import {
 	Table,
 	Thead,
 	Tbody,
 	Tr,
 	Th,
-	Td,
 	TableCaption,
 	Button,
 	Flex,
-	Text,
-} from '@chakra-ui/react'
-import {
 	Alert,
 	AlertIcon,
 	AlertTitle,
 	AlertDescription,
-	CloseButton,
 	Grid,
 } from '@chakra-ui/react'
-import Dashboard from '../../../components/Dashboard'
 
 export default function PageNo({
 	ticketData,
@@ -32,7 +27,6 @@ export default function PageNo({
 }) {
 	const router = useRouter()
 	const { pageNo } = router.query
-	console.log(pageNo)
 
 	let maxNumber = Math.ceil(value / 25)
 
@@ -51,7 +45,7 @@ export default function PageNo({
 		return (
 			<>
 				<Dashboard></Dashboard>
-				<Grid placeItems="center">No Tickets in this view.</Grid>
+				<Grid placeItems="center">No tickets in this view.</Grid>
 			</>
 		)
 	}
@@ -59,14 +53,7 @@ export default function PageNo({
 	return (
 		<>
 			<Dashboard></Dashboard>
-			<Table
-				variant="simple"
-				size="lg"
-				textAlign="left"
-				// borderColor="black"
-				// border="10px"
-			>
-				{/* <Table variant='striped' colorScheme="teal" > */}
+			<Table variant="simple" size="lg" textAlign="left">
 				<TableCaption placement="top">Ticket Information</TableCaption>
 				<Thead>
 					<Tr>
@@ -76,19 +63,14 @@ export default function PageNo({
 					</Tr>
 				</Thead>
 				<Tbody>
-					{tickets.map((elem, idx) => (
-						// <div key={elem.id}>
-
-						// <ListItem>
-						<Ticket key={elem.id}>{elem}</Ticket>
-						// </ListItem>
-						// </div>
-					))}
+					{tickets.map((elem, idx) => {
+						return <Ticket key={elem.id}>{elem}</Ticket>
+					})}
 				</Tbody>
 			</Table>
 			<Flex justifyContent="space-between" alignItems="center">
 				{pageNo > 1 ? (
-					<Link href={`/tickets/${parseInt(pageNo) - 1}`}>
+					<Link href={`/tickets/${parseInt(pageNo) - 1}`} passHref>
 						<Button size="lg" margin="10">
 							Previous
 						</Button>
@@ -97,7 +79,7 @@ export default function PageNo({
 					<div></div>
 				)}
 				{pageNo < maxNumber ? (
-					<Link href={`/tickets/${parseInt(pageNo) + 1}`}>
+					<Link href={`/tickets/${parseInt(pageNo) + 1}`} passHref>
 						<Button size="lg" margin="10">
 							Next
 						</Button>
@@ -111,21 +93,18 @@ export default function PageNo({
 }
 
 export async function getStaticPaths(context) {
-	let res = await fetch(
-		`https://zcckanishka.zendesk.com/api/v2/tickets/count`,
-		{
-			headers: {
-				Authorization: `Bearer ${process.env.API_TOKEN}`,
-			},
+	let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}tickets/count`, {
+		headers: {
+			Authorization: `Bearer ${process.env.API_TOKEN}`,
 		},
-	)
-	res = (await res).json()
+	})
+	res = await res.json()
 
 	let maxNumber = Math.ceil(res?.count?.value / 25)
 	let paths = []
 
 	for (let i = 1; i <= maxNumber; i++) {
-		paths.push({ params: { pageNo: i } })
+		paths.push({ params: { pageNo: i.toString() } })
 	}
 	return { paths: paths, fallback: 'blocking' }
 }
@@ -134,7 +113,7 @@ export async function getStaticProps(context) {
 	let { pageNo } = context.params
 	let [ticketData, countData] = await Promise.all([
 		fetch(
-			`https://zcckanishka.zendesk.com/api/v2/tickets.json?per_page=25&page=${pageNo}`,
+			`${process.env.NEXT_PUBLIC_BASE_URL}tickets.json?per_page=25&page=${pageNo}`,
 			{
 				headers: {
 					Authorization: `Bearer ${process.env.API_TOKEN}`,
@@ -151,11 +130,8 @@ export async function getStaticProps(context) {
 
 	ticketData = await ticketData.json()
 	countData = await countData.json()
-	// console.log(ticketData)
 
-	// console.log(!ticketData)
 	const emptyData = !ticketData || !countData
-	// console.log(!ticketData || !countData)
 
 	const pageEnd =
 		ticketData.next_page === null && ticketData.tickets.length === 0

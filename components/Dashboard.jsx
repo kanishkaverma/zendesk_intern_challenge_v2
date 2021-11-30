@@ -21,7 +21,6 @@ export default function Dashboard({ currentPath }) {
 			justifyContent: 'space-between',
 		}
 	}
-	console.log(currentPath)
 	return (
 		<>
 			<Box w="100%" style={dashboardStyle} backgroundColor="#2F3941">
@@ -30,7 +29,7 @@ export default function Dashboard({ currentPath }) {
 						style={{ textDecoration: 'none', onselectstart: 'return false' }}
 						href="/"
 					>
-						<Text fontSize="3xl" color="#56777A">
+						<Text fontSize="3xl" color="#56777A" role="logo">
 							zendesk_intern_challenge
 						</Text>
 					</Link>

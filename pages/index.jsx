@@ -7,7 +7,6 @@ import Dashboard from '../components/Dashboard'
 import { useRouter } from 'next/router'
 
 export default function Home({ status }) {
-	console.log(status)
 	const apiIsHealthy = status === 'operational'
 
 	const { asPath } = useRouter()
@@ -15,7 +14,7 @@ export default function Home({ status }) {
 	if (!apiIsHealthy) {
 		return (
 			<Grid placeItems="center">
-				<Text> Zendesk API is down. kindly retry later. </Text>
+				<Text role="heading"> Zendesk API is down. kindly retry later. </Text>
 			</Grid>
 		)
 	}
@@ -23,12 +22,9 @@ export default function Home({ status }) {
 }
 
 export async function getStaticProps() {
-	const res = await fetch(
-		'https://status.zendesk.com/api/components/support?domain=zcckanishka.zendesk.com',
-	)
+	const res = await fetch(`${process.env.NEXT_PUBLIC_STATUS_URL}`)
 	const response = await res.json()
 	let { status } = response
-	// status = 'xuz'
 	return {
 		props: { status }, // will be passed to the page component as props
 		revalidate: 10,
