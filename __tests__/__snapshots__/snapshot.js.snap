@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div
+  className="css-1fri2vb"
+>
+  <p
+    className="chakra-text css-0"
+    role="heading"
+  >
+     Zendesk API is down. kindly retry later. 
+  </p>
+</div>
+`;
