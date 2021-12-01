@@ -1,13 +1,13 @@
 import React from 'react'
-import { Box, Link, Flex, Button, Image, Text, Icon } from '@chakra-ui/react'
-// import {Link from}
 import { VscGithub } from 'react-icons/vsc'
 import { useRouter } from 'next/router'
+import { Box, Link, Flex, Button, Image, Text, Icon } from '@chakra-ui/react'
 
 export default function Dashboard({ currentPath }) {
 	const { asPath } = useRouter()
-	// console.log(currentPath_1)
 	let dashboardStyle = {}
+
+	let dashboardHeight = ''
 
 	if (asPath === '/') {
 		dashboardStyle = {
@@ -16,16 +16,24 @@ export default function Dashboard({ currentPath }) {
 			alignItems: 'center',
 			justifyContent: 'space-between',
 		}
+		dashboardHeight = '90vh'
 	} else {
 		dashboardStyle = {
-			height: '30%',
 			display: 'flex',
 			justifyContent: 'space-between',
 		}
+
+		dashboardHeight = '20%'
 	}
 	return (
 		<>
-			<Box w="100%" style={dashboardStyle} backgroundColor="#2F3941">
+			<Box
+				w="100%"
+				// height="100%"
+				height={dashboardHeight}
+				style={dashboardStyle}
+				backgroundColor="#2F3941"
+			>
 				<Box>
 					<Link
 						style={{ textDecoration: 'none', onselectstart: 'return false' }}
@@ -72,7 +80,7 @@ export default function Dashboard({ currentPath }) {
 				</Box>
 			</Box>
 
-			{currentPath == '/' && (
+			{currentPath === '/' && (
 				<Flex align="flex-end">
 					<Text
 						color="white"
