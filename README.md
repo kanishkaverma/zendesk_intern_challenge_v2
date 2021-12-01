@@ -10,10 +10,10 @@ Set it up like shown below. To get the JWT Oauth token, one needs to enable OAut
 [Auth Token](https://developer.zendesk.com/documentation/ticketing/working-with-oauth/creating-and-using-oauth-tokens-with-the-api/)
 
 ```
-next_public_base_url=https://{domain_name}.zendesk.com/api/v2/
-api_token={YOUR_API_TOKEN}
-node_options='--inspect'
-next_public_status_url=http://status.zendesk.com/api/components/support?domain={domain_name}.zendesk.com
+NEXT_PUBLIC_BASE_URL=https://{domain_name}.zendesk.com/api/v2/
+API_TOKEN={YOUR_API_TOKEN}
+NODE_OPTIONS='--inspect'
+NEXT_PUBLIC_STATUS_URL=http://status.zendesk.com/api/components/support?domain={domain_name}.zendesk.com
 ```
 
 Assuming you have node installed,
