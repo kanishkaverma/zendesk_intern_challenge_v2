@@ -6,7 +6,7 @@ import { VscGithub } from 'react-icons/vsc'
 export default function Dashboard({ currentPath }) {
 	let dashboardStyle = {}
 
-	if (currentPath == '/') {
+	if (currentPath === '/') {
 		dashboardStyle = {
 			height: '90vh',
 			display: 'flex',
