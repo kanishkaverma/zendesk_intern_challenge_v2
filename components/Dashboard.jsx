@@ -2,11 +2,14 @@ import React from 'react'
 import { Box, Link, Flex, Button, Image, Text, Icon } from '@chakra-ui/react'
 // import {Link from}
 import { VscGithub } from 'react-icons/vsc'
+import { useRouter } from 'next/router'
 
 export default function Dashboard({ currentPath }) {
+	const { asPath } = useRouter()
+	// console.log(currentPath_1)
 	let dashboardStyle = {}
 
-	if (currentPath === '/') {
+	if (asPath === '/') {
 		dashboardStyle = {
 			height: '90vh',
 			display: 'flex',
