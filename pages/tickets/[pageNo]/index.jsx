@@ -93,7 +93,9 @@ export default function PageNo({
 }
 
 export async function getStaticPaths(context) {
-	let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}tickets/count`, {
+	let baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+	let getTicketCountUrl = 'tickets/count'
+	let res = await fetch(new URL(getTicketCountUrl, baseUrl), {
 		headers: {
 			Authorization: `Bearer ${process.env.API_TOKEN}`,
 		},
@@ -111,15 +113,14 @@ export async function getStaticPaths(context) {
 
 export async function getStaticProps(context) {
 	let { pageNo } = context.params
+	let baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+	let getTicketDataUrl = `tickets.json?per_page=25&page=${pageNo}`
 	let [ticketData, countData] = await Promise.all([
-		fetch(
-			`${process.env.NEXT_PUBLIC_BASE_URL}tickets.json?per_page=25&page=${pageNo}`,
-			{
-				headers: {
-					Authorization: `Bearer ${process.env.API_TOKEN}`,
-				},
+		fetch(new URL(getTicketDataUrl, baseUrl), {
+			headers: {
+				Authorization: `Bearer ${process.env.API_TOKEN}`,
 			},
-		),
+		}),
 
 		fetch(`https://zcckanishka.zendesk.com/api/v2/tickets/count`, {
 			headers: {

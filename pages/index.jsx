@@ -22,7 +22,9 @@ export default function Home({ status }) {
 }
 
 export async function getStaticProps() {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_STATUS_URL}`)
+	let statusUrl = process.env.NEXT_PUBLIC_STATUS_URL
+
+	const res = await fetch(new URL(statusUrl))
 	const response = await res.json()
 	let { status } = response
 	return {
