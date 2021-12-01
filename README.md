@@ -21,11 +21,11 @@ do a
 
 ` npm install`
 
-Then, run the development server using the terminal:
+<!-- Then, run the development server using the terminal:
 
 ```
 npx next dev
-```
+``` -->
 
 To look at the website in action, I recommend doing
 

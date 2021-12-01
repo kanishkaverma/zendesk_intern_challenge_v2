@@ -7,8 +7,6 @@ export default function Dashboard({ currentPath }) {
 	const { asPath } = useRouter()
 	let dashboardStyle = {}
 
-	let dashboardHeight = ''
-
 	if (asPath === '/') {
 		dashboardStyle = {
 			height: '90vh',
@@ -16,21 +14,18 @@ export default function Dashboard({ currentPath }) {
 			alignItems: 'center',
 			justifyContent: 'space-between',
 		}
-		dashboardHeight = '90vh'
 	} else {
 		dashboardStyle = {
 			display: 'flex',
 			justifyContent: 'space-between',
 		}
-
-		dashboardHeight = '20%'
 	}
 	return (
 		<>
 			<Box
 				w="100%"
 				// height="100%"
-				height={dashboardHeight}
+				// height={dashboardHeight}
 				style={dashboardStyle}
 				backgroundColor="#2F3941"
 			>
