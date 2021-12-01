@@ -114,6 +114,7 @@ export async function getStaticPaths(context) {
 export async function getStaticProps(context) {
 	let { pageNo } = context.params
 	let baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+	let getTicketCountUrl = 'tickets/count'
 	let getTicketDataUrl = `tickets.json?per_page=25&page=${pageNo}`
 	let [ticketData, countData] = await Promise.all([
 		fetch(new URL(getTicketDataUrl, baseUrl), {
@@ -122,7 +123,7 @@ export async function getStaticProps(context) {
 			},
 		}),
 
-		fetch(`https://zcckanishka.zendesk.com/api/v2/tickets/count`, {
+		fetch(new URL(getTicketCountUrl, baseUrl), {
 			headers: {
 				Authorization: `Bearer ${process.env.API_TOKEN}`,
 			},

@@ -16,7 +16,6 @@ export default function Dashboard({ currentPath }) {
 	} else {
 		dashboardStyle = {
 			height: '30%',
-
 			display: 'flex',
 			justifyContent: 'space-between',
 		}
