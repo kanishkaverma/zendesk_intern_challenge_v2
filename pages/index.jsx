@@ -10,7 +10,6 @@ export default function Home({ status }) {
 	const apiIsHealthy = status === 'operational'
 
 	const { asPath } = useRouter()
-	console.log(asPath)
 
 	if (!apiIsHealthy) {
 		return (

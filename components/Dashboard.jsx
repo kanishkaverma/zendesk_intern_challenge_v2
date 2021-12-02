@@ -5,14 +5,17 @@ import { Box, Link, Flex, Button, Image, Text, Icon } from '@chakra-ui/react'
 
 export default function Dashboard({ currentPath }) {
 	const { asPath } = useRouter()
-	let dashboardStyle = {}
+	let dashboardStyle = {
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+	}
 
 	if (asPath === '/') {
 		dashboardStyle = {
+			...dashboardStyle,
 			height: '90vh',
-			display: 'flex',
 			alignItems: 'center',
-			justifyContent: 'space-between',
 		}
 	} else {
 		dashboardStyle = {
@@ -26,6 +29,7 @@ export default function Dashboard({ currentPath }) {
 				w="100%"
 				// height="100%"
 				// height={dashboardHeight}
+				// height={ }
 				style={dashboardStyle}
 				backgroundColor="#2F3941"
 			>

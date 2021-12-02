@@ -19,7 +19,6 @@ import {
 } from '@chakra-ui/react'
 
 export default function PageNo({
-	ticketData,
 	countData: {
 		count: { value },
 	},

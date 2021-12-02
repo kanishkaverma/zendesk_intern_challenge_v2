@@ -10,10 +10,8 @@ test('navigate to tickets page and see ticket information showing up or no ticke
 	await expect(page).toHaveURL('http://localhost:3000/tickets/1')
 
 	const ticketInfo = await page.$$("text='Ticket Information'")
-	console.log(ticketInfo)
 
 	const ticketsExist = ticketInfo.length !== 0
-	console.log(ticketsExist)
 
 	if (ticketsExist) {
 		await expect(page.locator('text=Ticket Information')).toContainText(
@@ -34,7 +32,6 @@ test('test for next and prev buttons', async ({ page }) => {
 	await page.goto('http://localhost:3000/tickets/1')
 
 	const nextButton = await page.$$("text='Next'")
-	console.log(nextButton)
 	if (nextButton.length !== 0) {
 		await page.click('text=Next')
 
