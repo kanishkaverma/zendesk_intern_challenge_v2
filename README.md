@@ -47,3 +47,13 @@ To run the tests, simply do `npm run tests`
 ## ISR [Incremental Static Regeneration]
 
 This website uses Incremental Static Regeneration to fetch and serve data. pages are built statically using Next and served from a cache in the CDN ,which makes the website incredibly fast. However, in case there is a change in the data being sent by the API. The pages which are affected by the changed data are rebuilt and cached after 60 seconds.
+
+## Screenshots 
+
+![screenshot](https://github.com/kanishkaverma/zendesk_intern_challenge_v2/blob/main/screenshots/Screenshot%20(9).png)
+![screenshot](https://github.com/kanishkaverma/zendesk_intern_challenge_v2/blob/main/screenshots/Screenshot%20(10).png)
+![screenshot](https://github.com/kanishkaverma/zendesk_intern_challenge_v2/blob/main/screenshots/Screenshot%20(11).png)
+![screenshot](https://github.com/kanishkaverma/zendesk_intern_challenge_v2/blob/main/screenshots/Screenshot%20(12).png)
+![screenshot](https://github.com/kanishkaverma/zendesk_intern_challenge_v2/blob/main/screenshots/Screenshot%20(13).png)
+![screenshot](https://github.com/kanishkaverma/zendesk_intern_challenge_v2/blob/main/screenshots/Screenshot%20(14).png)
+![screenshot](https://github.com/kanishkaverma/zendesk_intern_challenge_v2/blob/main/screenshots/Screenshot%20(15).png)
